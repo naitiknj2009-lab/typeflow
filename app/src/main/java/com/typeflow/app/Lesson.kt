@@ -31,12 +31,12 @@ object Curriculum {
  private fun tip(id:Int)=when(id){
   in 1..5->"Sit comfortably. Keep wrists straight, shoulders relaxed, and both index fingers on the F and J bumps."
   in 6..20->"Left little finger: A; ring: S; middle: D; index: F. Right index: J; middle: K; ring: L; little: semicolon. Thumbs press Space."
-  in 21..35->"Reach up from home row: left little Q, ring W, middle E, index R/T; right index Y/U, middle I, ring O, little P. Return home."
-  in 36..50->"Reach down gently: left little Z, ring X, middle C, index V/B; right index N/M, middle comma, ring period, little slash. Return home."
+  in 21..40->"Reach up from home row: left little Q, ring W, middle E, index R/T; right index Y/U, middle I, ring O, little P. Return home."
+  in 41..55->"Reach down gently: left little Z, ring X, middle C, index V/B; right index N/M, middle comma, ring period, little slash. Return home."
   in 74..83->"For capitals, hold Shift with the opposite hand. Use the same finger zones for the number row; do not stretch your wrist."
   else->"Use the finger nearest each key, keep wrists neutral, and return to the home row after reaches. Look at the screen rather than your hands."
  }
- private fun keys(id:Int)=when(id){in 1..20->"A S D F  •  J K L ;";in 21..35->"Q W E R T  •  Y U I O P";in 36..50->"Z X C V B  •  N M , . /";in 61..70->"Shift + number row";in 71..80->"Comma • period • quotes • symbols";else->"Full keyboard"}
+ private fun keys(id:Int)=when(id){in 1..20->"A S D F  •  J K L ;";in 21..40->"Q W E R T  •  Y U I O P";in 41..55->"Z X C V B  •  N M , . /";in 61..70->"Shift + number row";in 71..80->"Comma • period • quotes • symbols";else->"Full keyboard"}
  val lessons:List<Lesson> = prompts.mapIndexed { i,p ->
   val id=i+1; val s=stages.first{ id in it.range }
   Lesson(id,"Lesson %03d".format(id),s.title,s.objective,p,when(id){in 1..20->"Beginner";in 21..83->"Intermediate";else->"Advanced"},tip(id),keys(id))
