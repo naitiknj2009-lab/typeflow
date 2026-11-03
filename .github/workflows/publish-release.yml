@@ -1,0 +1,38 @@
+name: Publish TypeFlow APK release
+
+on:
+  push:
+    paths:
+      - ".github/workflows/publish-release.yml"
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download verified TypeFlow APK artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: typeflow-debug-apk
+          repository: naitiknj2009-lab/typeflow
+          run-id: 41674832740
+          github-token: ${{ github.token }}
+          path: dist
+
+      - name: Prepare APK
+        run: |
+          APK="$(find dist -type f -name '*.apk' -print -quit)"
+          test -n "$APK"
+          cp "$APK" dist/TypeFlow.apk
+
+      - name: Create GitHub release and upload APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v1.0.0 dist/TypeFlow.apk \
+            --repo naitiknj2009-lab/typeflow \
+            --title "TypeFlow v1.0.0" \
+            --notes "First TypeFlow Android debug release. Built by GitHub Actions; automated unit tests and APK build passed."
