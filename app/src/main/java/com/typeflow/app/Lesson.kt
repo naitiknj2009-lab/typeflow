@@ -1,28 +1,12 @@
 package com.typeflow.app
-
-data class Lesson(val id: Int, val title: String, val course: String, val objective: String, val prompt: String, val level: String)
-
-object Curriculum {
-    private val home = listOf("asdf jkl; asdf jkl;", "a s d f j k l ;", "ff jj dd kk ss ll aa ;;", "sad lad fall ask flask", "all dads ask; a lad falls.")
-    private val top = listOf("qwer uiop qwer uiop", "q w e r u i o p", "were ripe power quiet", "write your own quiet poem", "our upper row is ready.")
-    private val bottom = listOf("zxcv nm,. zxcv nm,.", "z x c v n m , .", "can mix, move, and zoom.", "vivid caves contain many maps.", "mix words with care.")
-    private val passages = listOf("Practice makes progress, one careful keystroke at a time.", "A calm rhythm helps you type with accuracy and confidence.", "Small improvements become lasting skills through daily effort.", "Keep your eyes on the text and let your fingers learn.", "Good typing balances speed, comfort, and precision.")
-    val lessons: List<Lesson> = (1..110).map { n ->
-        val course = when (n) {
-            in 1..5 -> "Getting Started"; in 6..20 -> "Home Row"; in 21..35 -> "Top Row"
-            in 36..50 -> "Bottom Row"; in 51..60 -> "Complete Alphabet"; in 61..70 -> "Capitalization & Numbers"
-            in 71..80 -> "Words & Sentences"; in 81..90 -> "Advanced Typing"; else -> "Professional Typing"
-        }
-        val prompt = when (n) {
-            1 -> "asdf jkl; asdf jkl;"; 2 -> "a s d f j k l ;"; 3 -> "fff jjj ddd kkk sss lll aaa ;;;"
-            4 -> "sad dad ask fall flask"; 5 -> "a dad asks; a lad falls."
-            in 6..20 -> home[(n - 6) % home.size]
-            in 21..35 -> top[(n - 21) % top.size]
-            in 36..50 -> bottom[(n - 36) % bottom.size]
-            in 51..60 -> "the quick red fox jumps over a lazy dog."
-            in 61..70 -> "Type 123, 456, and 789. Use Shift for capitals!"
-            else -> passages[(n - 71) % passages.size] + if (n % 2 == 0) " " + passages[(n - 70) % passages.size] else ""
-        }
-        Lesson(n, "Lesson $n", course, "Build accuracy and confidence with ${course.lowercase()} skills.", prompt, if (n <= 20) "Beginner" else if (n <= 70) "Intermediate" else "Advanced")
-    }
+data class Lesson(val id:Int,val title:String,val course:String,val objective:String,val prompt:String,val level:String,val fingerTip:String,val keys:String)
+object Curriculum{
+ private val home=listOf("asdf jkl; asdf jkl;","a s d f j k l ;","fff jjj ddd kkk sss lll aaa ;;;","sad dad ask fall flask","a dad asks; a lad falls.","all fall; ask dad; add a salad.","ask a lad; a flask; a salad; all lads.","jak asks; dad adds a salad.","fall, ask, add, flask, sad.","a; s; d; f; j; k; l; ;")
+ private val top=listOf("qwer uiop qwer uiop","q w e r u i o p","were ripe power quiet","write your own quiet poem","our upper row is ready.","we were quiet; you were proud.","power your ideas with practice.","type with your left and right hands.","we write, you read, and we improve.","quite a few people write well.")
+ private val bottom=listOf("zxcv nm,. zxcv nm,.","z x c v n m , .","can mix, move, and zoom.","vivid caves contain many maps.","mix words with care.","move the van; come by noon.","zoom past the next curve.","many small moves make a difference.","come, move, and make a new plan.","calm minds make fewer mistakes.")
+ private val text=listOf("Practice builds skill and confidence.","Steady hands create a steady rhythm.","Accuracy comes before speed.","Small steps lead to meaningful progress.","Keep your eyes on the screen.","Let your fingers find each key.","Good habits make typing feel natural.","Correct mistakes and keep moving forward.","Build a rhythm that feels relaxed and smooth.","Every expert started as a beginner.")
+ private val nums=listOf("123 456 7890","2026 1024 2048 365","Room 12 has 24 chairs.","There are 7 days in a week.","Call me at 555-0123.","Version 2.5 is ready!","I scored 95% on the test.","The total is 48 + 27 = 75.","Use 10, 20, and 30 as examples.","Price: $25.50 (save 10%).")
+ private val punctuation=listOf("Hello, world! How are you today?","Typing is fun; practice makes it better.","Wait... is that correct? Yes, it is.","She said, \"Keep trying!\"","First: focus. Second: practise. Third: improve.","Can you type this sentence?","One step at a time — that is the way.","It's a bright, beautiful day.","(Open the page) [read the note] {finish the task}.","Well-written work is clear, calm, and precise.")
+ private val stages=listOf(Triple(1..5,"Getting Started","Learn the home position and how to rest your fingers."),Triple(6..20,"Home Row","Build reliable movement on the home row."),Triple(21..35,"Top Row","Reach the top row without looking down."),Triple(36..50,"Bottom Row","Reach the bottom row with relaxed fingers."),Triple(51..60,"All Letter Rows","Combine all letters into flowing words."),Triple(61..70,"Capital Letters & Numbers","Use Shift and the number row accurately."),Triple(71..80,"Punctuation & Sentences","Type complete sentences with punctuation."),Triple(81..90,"Speed & Rhythm","Build a consistent pace while staying accurate."),Triple(91..100,"Real-world Typing","Practise useful paragraphs and everyday writing."),Triple(101..110,"Advanced Typing","Handle mixed text and longer passages."))
+ val lessons=(1..110).map{n->val s=stages.first{n in it.first};val p=when(n){in 1..20->home[(n-1)%10];in 21..35->top[(n-21)%10];in 36..50->bottom[(n-36)%10];in 51..60->"the quick brown fox jumps over the lazy dog.";in 61..70->nums[(n-61)%10];in 71..80->punctuation[(n-71)%10];in 81..110->text[(n-81)%10]};val k=when(n){in 1..20->"A S D F • J K L ;";in 21..35->"Q W E R • U I O P";in 36..50->"Z X C V • N M , .";in 61..70->"Shift + number row";in 71..80->"Punctuation keys";else->"Full keyboard"};val f=when(n){in 1..5->"Left fingers rest on A S D F; right fingers rest on J K L ;. Thumbs near Space.";in 6..20->"Return each finger to the home row after every reach.";in 21..35->"Reach up from home row, then return. Keep wrists relaxed.";in 36..50->"Reach down gently, then return to home position.";in 61..70->"Hold Shift with the opposite hand from the one typing the capital.";else->"Keep both hands relaxed, eyes on the text, and return to home position often."};Lesson(n,"Lesson %03d".format(n),s.second,s.third,p,if(n<=20)"Beginner" else if(n<=70)"Intermediate" else "Advanced",f,k)}
 }
