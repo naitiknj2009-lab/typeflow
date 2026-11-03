@@ -13,7 +13,7 @@ object Curriculum {
   Stage(74..83,"Numbers & Capitals","Use Shift and the number row with the opposite hand."),
   Stage(84..93,"Punctuation","Type punctuation, quotation marks, and complete sentences."),
   Stage(94..110,"Everyday Writing","Practise useful messages, notes, and paragraphs."),
-  Stage(111..127,"Advanced Practice","Handle mixed text, longer passages, and varied key patterns.")
+  Stage(111..126,"Advanced Practice","Handle mixed text, longer passages, and varied key patterns.")
  )
  private val prompts=listOf(
  "asdf jkl; asdf jkl;","a s d f j k l ;","fff jjj ddd kkk sss lll aaa ;;;","sad dad ask fall flask","a dad asks; a lad falls.","all fall; ask dad; add a salad.","ask a lad; a flask; a salad; all lads.","dad adds a salad; a lad asks dad.","fall, ask, add, flask, sad.","a; s; d; f; j; k; l; ;",
