@@ -1,17 +1,23 @@
-# TypeFlow roadmap
+# TypeFlow implementation status
 
-## Phase 1: core foundation
-- Native Kotlin and Jetpack Compose Android app
-- Offline lesson catalogue with 110 lesson entries
-- Physical keyboard input and typing practice
-- Local progress persistence
-- GitHub Actions debug APK build
+## Implemented
+- Native Kotlin + Jetpack Compose Android app (minimum Android 10 / API 29).
+- Offline-only design with no Internet permission and no account flow.
+- 126 distinct English lesson prompts in progressive curriculum stages.
+- Physical USB OTG and Bluetooth keyboard input.
+- Live typing feedback, backspace, pause/restart, timer, WPM, accuracy, and error tracking.
+- Finger-position explanations and a colour-coded keyboard guide.
+- Four arcade modes, including timed Word Sprint and Number & Symbol Mix.
+- Device-local progress, dark appearance, and reset controls.
+- GitHub Actions build plus unit tests.
 
-## Later phases
-1. Unique, pedagogically sequenced lesson exercises and detailed finger guidance.
-2. Room-backed history, session recovery, and local backup/restore.
-3. Typing tests, learning modes, and local typing coach.
-4. Five complete offline games and mini-games.
-5. Responsive tablet/phone layouts, dark theme, accessibility, and device QA.
+## Verification still required on a physical device
+- Test USB OTG and Bluetooth keyboards on Android 10 and newer.
+- Check portrait/landscape and smaller phone layouts.
+- Verify long-session performance and accessibility with real users.
+- Prepare a release-signed APK only after a signing key is securely configured.
 
-Features are marked complete only after implementation and verification.
+## Future improvements
+- Add a full lesson-by-lesson finger animation and optional audio feedback.
+- Add richer per-lesson history, charts, daily goals, and local backup/restore.
+- Expand arcade modes with additional scoring rules and replayable levels.
