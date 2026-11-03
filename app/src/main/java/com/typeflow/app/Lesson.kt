@@ -7,14 +7,13 @@ object Curriculum {
  val stages=listOf(
   Stage(1..5,"Getting Started","Learn posture, home position, and the F and J guide keys."),
   Stage(6..20,"Home Row","Build accuracy with A S D F and J K L ;."),
-  Stage(21..35,"Top Row","Reach Q W E R and U I O P, then return home."),
-  Stage(36..50,"Bottom Row","Reach Z X C V and N M , . with relaxed hands."),
-  Stage(51..60,"All Letter Rows","Combine all letters into common words and sentences."),
-  Stage(61..70,"Numbers & Capitals","Use Shift and the number row with the opposite hand."),
-  Stage(71..80,"Punctuation","Type punctuation, quotation marks, and complete sentences."),
-  Stage(81..90,"Speed & Rhythm","Maintain a steady pace without sacrificing accuracy."),
-  Stage(91..100,"Everyday Writing","Practise useful messages, notes, and paragraphs."),
-  Stage(101..110,"Advanced Practice","Handle mixed text, longer passages, and varied key patterns.")
+  Stage(21..40,"Top Row","Reach Q W E R and U I O P, then return home."),
+  Stage(41..55,"Bottom Row","Reach Z X C V and N M , . with relaxed hands."),
+  Stage(56..73,"All Letter Rows","Combine all letters into common words and sentences."),
+  Stage(74..83,"Numbers & Capitals","Use Shift and the number row with the opposite hand."),
+  Stage(84..93,"Punctuation","Type punctuation, quotation marks, and complete sentences."),
+  Stage(94..110,"Everyday Writing","Practise useful messages, notes, and paragraphs."),
+  Stage(111..127,"Advanced Practice","Handle mixed text, longer passages, and varied key patterns.")
  )
  private val prompts=listOf(
  "asdf jkl; asdf jkl;","a s d f j k l ;","fff jjj ddd kkk sss lll aaa ;;;","sad dad ask fall flask","a dad asks; a lad falls.","all fall; ask dad; add a salad.","ask a lad; a flask; a salad; all lads.","dad adds a salad; a lad asks dad.","fall, ask, add, flask, sad.","a; s; d; f; j; k; l; ;",
@@ -34,12 +33,12 @@ object Curriculum {
   in 6..20->"Left little finger: A; ring: S; middle: D; index: F. Right index: J; middle: K; ring: L; little: semicolon. Thumbs press Space."
   in 21..35->"Reach up from home row: left little Q, ring W, middle E, index R/T; right index Y/U, middle I, ring O, little P. Return home."
   in 36..50->"Reach down gently: left little Z, ring X, middle C, index V/B; right index N/M, middle comma, ring period, little slash. Return home."
-  in 61..70->"For capitals, hold Shift with the opposite hand. Use the same finger zones for the number row; do not stretch your wrist."
+  in 74..83->"For capitals, hold Shift with the opposite hand. Use the same finger zones for the number row; do not stretch your wrist."
   else->"Use the finger nearest each key, keep wrists neutral, and return to the home row after reaches. Look at the screen rather than your hands."
  }
  private fun keys(id:Int)=when(id){in 1..20->"A S D F  •  J K L ;";in 21..35->"Q W E R T  •  Y U I O P";in 36..50->"Z X C V B  •  N M , . /";in 61..70->"Shift + number row";in 71..80->"Comma • period • quotes • symbols";else->"Full keyboard"}
  val lessons:List<Lesson> = prompts.mapIndexed { i,p ->
   val id=i+1; val s=stages.first{ id in it.range }
-  Lesson(id,"Lesson %03d".format(id),s.title,s.objective,p,when(id){in 1..20->"Beginner";in 21..70->"Intermediate";else->"Advanced"},tip(id),keys(id))
+  Lesson(id,"Lesson %03d".format(id),s.title,s.objective,p,when(id){in 1..20->"Beginner";in 21..83->"Intermediate";else->"Advanced"},tip(id),keys(id))
  }
 }
